@@ -1,0 +1,42 @@
+{
+    "name": "badinansoft/fib-php-sdk",
+    "description": "FIB Online payments service PHP SDK",
+    "keywords": [
+        "badinansoft",
+        "fib-php-sdk"
+    ],
+    "homepage": "https://github.com/badinansoft/fib-php-sdk",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Shahab Zebari",
+            "email": "me@shahabzebari.net",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Badinansoft\\FibPhpSdk\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Badinansoft\\FibPhpSdk\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
