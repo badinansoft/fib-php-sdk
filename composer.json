@@ -16,23 +16,30 @@
         }
     ],
     "require": {
-        "php": "^7.4|^8.0"
+        "php": "^7.4|^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.0.1"
     },
     "require-dev": {
+        "squizlabs/php_codesniffer": "3.*",
+        "psy/psysh": "@stable",
         "phpunit/phpunit": "^9.0"
     },
     "autoload": {
         "psr-4": {
-            "Badinansoft\\FibPhpSdk\\": "src"
+            "Badinansoft\\FIB\\": "src/"
         }
     },
     "autoload-dev": {
+        "psr-0": {
+            "Badinansoft\\FIB\\": "src/"
+        },
         "psr-4": {
-            "Badinansoft\\FibPhpSdk\\Tests\\": "tests"
+            "Badinansoft\\FIB\\Tests\\": "tests/"
         }
     },
     "scripts": {
-        "test": "vendor/bin/phpunit",
+        "test": "vendor/bin/phpunit tests",
         "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
 
     },

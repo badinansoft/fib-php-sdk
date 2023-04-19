@@ -23,7 +23,7 @@ composer require badinansoft/fib-php-sdk
 ### Testing
 
 ```bash
-composer test
+composer tests
 ```
 
 ### Changelog
