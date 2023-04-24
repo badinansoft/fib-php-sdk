@@ -26,7 +26,7 @@ class FIB
     /**
      * Base API URL
      */
-    private string $url = 'https://fib.stage.fib.iq/protected/v1';
+    private static string $url = 'https://fib.stage.fib.iq/protected/v1';
 
 
     public function __construct(private string $client_id='',private string $client_secret='' )
@@ -36,12 +36,12 @@ class FIB
 
     public function setUrl(string $url):void
     {
-        $this->url = $url;
+        self::$url = $url;
     }
 
     public function getUrl():string
     {
-        return $this->url;
+        return self::$url;
     }
 
     /**

@@ -1,1 +1,1 @@
-{"version":1,"defects":{"Badinansoft\\FIB\\Tests\\testAuth::test_authenticate":5},"times":{"Badinansoft\\FIB\\Tests\\testAuth::test_authenticate":8.772}}
+{"version":1,"defects":{"Badinansoft\\FIB\\Tests\\testAuth::test_authenticate":4,"Badinansoft\\FIB\\Tests\\testAuth::test_cancel_payment_and_check_status":3},"times":{"Badinansoft\\FIB\\Tests\\testAuth::test_authenticate":0.604,"Badinansoft\\FIB\\Tests\\testAuth::test_create_payment_and_check_status":0.571,"Badinansoft\\FIB\\Tests\\testAuth::test_cancel_payment_and_check_status":0.656}}
