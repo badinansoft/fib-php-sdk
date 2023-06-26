@@ -1,3 +1,4 @@
+
 # FIB (First Iraqi Bank)'s PHP payment SDK
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/badinansoft/fib-php-sdk.svg?style=flat-square)](https://packagist.org/packages/badinansoft/fib-php-sdk)
@@ -23,16 +24,74 @@ composer require badinansoft/fib-php-sdk
 
 ```php
 // create object instance of class
+
 $fib = new \Badinansoft\FIB\FIB(client_id: '', client_secret:'');
 
-//create a payment
-$fib->payments()
-    ->createPayment(amount: 20,currency: 'IQD',description: 'Host Invoice #2832',statusCallbackUrl: 'https://.....')
+```
+| Parameter|  Description|
+|--|------|
+| **Client_id**  |  Client id provided by FIB|
+| **client_secret** |  Client Secret provided by FIB |
 
+       
+   
+
+
+```php
+
+//create a payment
+$payment = $fib->payments()
+    ->createPayment(amount: 20,
+				    currency: 'IQD',
+				    description: 'Host Invoice #2832',
+				    statusCallbackUrl: 'https://.....')
+				    
+```
+
+| Parameter|  Description|
+|--|------|
+| **amount**  |  the amount of the payment |
+| **currency**  |  the currency of the payment; currently only IQD is supported |
+| **description**| (Optional) Description of the payment to help your customer to identify it in the FIB app, with the maximum length of 50 characters.|
+|**statusCallbackUrl**|  should be able to handle POST requests with request body that contains two properties: - **id:** this will be the payment id <br> - **status:** this will be the status of the payment, for more information, go to Check Status endpoint section of this |
+
+```php
+	//return all data as stdClass Object 
+	$payment->getData();
+```
+##### Expected Response
+| Property | Description  |
+|--|--|
+| **paymentId** | A unique identifier of the payment, used later to check the status. |
+|**qrCode**|A base64-encoded data URL of the QR code image that the user can scan with the FIB mobile app.|
+|**readableCode**|A payment code that the user can enter manually in case he cannot scan the QR code.|
+|**personalAppLink**|A link that the user can tap on his mobile phone to go to the corresponding payment screen in the FIB Personal app.|
+|**businessAppLink**|A link that the user can tap on his mobile phone to go to the corresponding payment screen in the FIB Business app|
+|**corporateAppLink**|A link that the user can tap on his mobile phone to go to the corresponding payment screen in the FIB Corporate app|
+|**validUntil**|An ISO-8601-formatted date-time string, representing a moment in time when the payment expires|
+
+
+
+
+```php
 //Check payment status
 $fib->payments()
     ->paymentStatus(paymentId: '9dfa724f-4784-4487-811b-63057b540503')
+	->getData();
+```
+##### Expected Response
+| Property | Description  |
+|--|--|
+|**paymentId**|a unique identifier of the payment.|
+|**status**|Expected values are PAID | UNPAID | DECLINED|
+|**validUntil**|an ISO-8601-formatted date-time string, representing a moment in time when the payment expires|
+|**paidAt**|an ISO-8601-formatted date-time string, representing a moment in time when the payment is done.|
+|**amount**|a JSON object, containing two key-value pairs; the _amount_ and _currency_ of the payment.|
+|**decliningReason**|Expected Values are: <br>-SERVER_FAILURE: Payment failure due to some internal error.<br>-PAYMENT_EXPIRATION: Payment has expired.<br>-PAYMENT_CANCELLATION: Payment canceled by the user.|
+|||
 
+
+```php
 //Cancel Payment
 $fib->payments()
     ->cancelPayment(paymentId: '9dfa724f-4784-4487-811b-63057b540503');
